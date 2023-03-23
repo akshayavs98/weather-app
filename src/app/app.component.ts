@@ -50,13 +50,20 @@ export class AppComponent {
                   this.getForeCast(data.forecast.forecastday)
                 },100)
               })
-              .catch((error) =>
+              .catch((error) =>{
                 console.error('Error getting weather data:', error)
+              }
               );
           },
-          (error: any) => console.error('Error getting location:', error)
+          
+          (error: any) => {console.error('Error getting location:', error)
+          const loc = window.prompt("Provide a location", "");
+                this.getWeatherForLocation(loc,true)
+        }
         );
       } else {
+        const loc = window.prompt("Provide a location", "");
+        this.getWeatherForLocation(loc,true)
         console.error('Geolocation is not supported by this browser.');
       }
     });
@@ -69,9 +76,17 @@ export class AppComponent {
       : (this.inDegreeCelsius = false);
   }
 
-  getWeatherForLocation() {
-    let input = <HTMLInputElement>document.querySelector('.search-box-input');
-    let location = input?.value.trim();
+  getWeatherForLocation(value: any,fromPrompt:boolean) {
+    let location = '';
+    if(fromPrompt){
+      location = value;
+      
+    }
+    else {
+      let input = <HTMLInputElement>document.querySelector('.search-box-input');
+      location = input?.value.trim();
+    }
+  
     if (location) {
       const apiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${this.apiKey}&q=${location}&days=8`;
       fetch(apiUrl)
@@ -96,6 +111,7 @@ export class AppComponent {
           setTimeout(()=>{
             this.getWeatherCondition(data.current.is_day,data.current.condition.code);
             this.getForeCast(data.forecast.forecastday)
+            this.showLoading = false;
           },100)
         })
         .catch((error) => (this.error = true));

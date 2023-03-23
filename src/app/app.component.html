@@ -47,7 +47,7 @@
             type="text"
             value=""
           />
-          <div class="search" (click)="getWeatherForLocation()"></div>
+          <div class="search" (click)="getWeatherForLocation('',false)"></div>
         </div>
         <div class="error" *ngIf="error">Error getting data!!!</div>
       </div>
