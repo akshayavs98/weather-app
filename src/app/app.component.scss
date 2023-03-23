@@ -196,13 +196,15 @@
     font-size: 1.5rem;
 }
 .forecast-container{
-   padding:35rem 0 0 5rem;
+   padding:35rem 0 0 2rem;
    display: flex;
 }
+
 .forecast{
      display: block;
      width:15%;
      justify-content: center;
+     padding: 1rem;
 }
 .forecast-day{
     margin-bottom: 1rem;
@@ -218,3 +220,27 @@
     font-size: 1.2rem;
     font-weight: 600;
 }
+@media screen and (max-width: 479px) {
+    .forecast-container{
+        display: block;
+        margin: 20px;
+     }
+     .forecast-temp-max{
+        width:500px
+    }
+    .forecast-temp-min{
+        width:200px
+    }
+  }
+  @media screen and (min-width: 480px) and  (max-width: 779px) {
+    .forecast-container{
+        display: block;
+        margin: 20px;
+     }
+     .forecast-temp-max{
+        width:500px
+    }
+    .forecast-temp-min{
+        width:200px
+    }
+  }
