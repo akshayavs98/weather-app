@@ -24,7 +24,7 @@ export class AppComponent {
         navigator.geolocation.getCurrentPosition(
           (position) => {
             const { latitude, longitude } = position.coords;
-            const apiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${this.apiKey}&q=${latitude},${longitude}&days=8`;
+            const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${this.apiKey}&q=${latitude},${longitude}&days=8`;
             fetch(apiUrl)
               .then((response) => response.json())
               .then((data) => {
@@ -88,7 +88,7 @@ export class AppComponent {
     }
   
     if (location) {
-      const apiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${this.apiKey}&q=${location}&days=8`;
+      const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${this.apiKey}&q=${location}&days=8`;
       fetch(apiUrl)
         .then((response) => response.json())
         .then((data) => {
